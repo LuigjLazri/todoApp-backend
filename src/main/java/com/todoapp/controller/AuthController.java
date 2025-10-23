@@ -23,6 +23,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDTO> login(@RequestBody LoginRequestDTO request) {
+        System.out.println("LOGIN ATTEMPT");
         return userRepository.findByUsername(request.getUsername())
                 .filter(user -> passwordEncoder.matches(request.getPassword(), user.getPassword()))
                 .map(user -> ResponseEntity.ok(new LoginResponseDTO("fake-jwt-token"))) // later replace with real JWT

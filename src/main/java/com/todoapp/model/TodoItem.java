@@ -12,8 +12,14 @@ public class TodoItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String text;
+    private String title;
+
+    private String description;
+
+    private String status;
+
     private boolean completed;
+
 
     @ManyToOne
     @JoinColumn(name = "user_id")

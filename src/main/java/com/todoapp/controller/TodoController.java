@@ -23,6 +23,7 @@ public class TodoController {
 
     @GetMapping
     public List<TodoItem> getTodos(Authentication auth) {
+        System.out.println("GET TODOS");
         User user = userRepository.findByUsername(auth.getName()).orElseThrow();
         return todoRepository.findByUser(user);
     }
