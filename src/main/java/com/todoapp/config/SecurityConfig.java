@@ -31,7 +31,7 @@ public class SecurityConfig {
                 )
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
                 .httpBasic(Customizer.withDefaults())
-                .userDetailsService(customUserDetailsService); // ✅ ensure it's wired here
+                .userDetailsService(customUserDetailsService);
 
         return http.build();
     }

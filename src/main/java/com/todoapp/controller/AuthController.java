@@ -12,7 +12,6 @@ import com.todoapp.repository.UserRepository;
 @RequestMapping("/api/auth")
 public class AuthController {
 
-
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -23,10 +22,9 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDTO> login(@RequestBody LoginRequestDTO request) {
-        System.out.println("LOGIN ATTEMPT");
         return userRepository.findByUsername(request.getUsername())
                 .filter(user -> passwordEncoder.matches(request.getPassword(), user.getPassword()))
-                .map(user -> ResponseEntity.ok(new LoginResponseDTO("fake-jwt-token"))) // later replace with real JWT
+                .map(user -> ResponseEntity.ok(new LoginResponseDTO("fake-jwt-token"))) // // TODO Replace with real JWT token
                 .orElse(ResponseEntity.status(401).build());
     }
 }
